@@ -7,8 +7,8 @@
     <ProjectGuid>{60D7E274-5E4B-4346-B077-A7BBE49293E5}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Log_normal</RootNamespace>
-    <AssemblyName>Log_normal</AssemblyName>
+    <RootNamespace>LogNormal</RootNamespace>
+    <AssemblyName>LogNormal</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

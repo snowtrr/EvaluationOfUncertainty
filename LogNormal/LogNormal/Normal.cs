@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Log_normal
+namespace LogNormal
 {
     /// <summary>
     /// Normal distribution

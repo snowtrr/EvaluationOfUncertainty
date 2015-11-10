@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Log_normal
+namespace LogNormal
 {
     class Program
     {

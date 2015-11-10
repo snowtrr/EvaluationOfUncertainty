@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log_normal", "Log_normal\Log_normal.csproj", "{60D7E274-5E4B-4346-B077-A7BBE49293E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogNormal", "LogNormal\LogNormal.csproj", "{60D7E274-5E4B-4346-B077-A7BBE49293E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
