@@ -11,6 +11,24 @@ namespace LogNormal
     {
         static void Main(string[] args)
         {
+            #region Checker
+
+            // var checkRandom = new CheckRandom();
+            // Console.WriteLine(checkRandom.Integral());
+            // Console.ReadLine();
+
+            #endregion Checker
+
+            var normal = new Normal();
+            var m = normal.GenNorm(2147483646, 101);
+
+            foreach (var elem in m)
+            {
+                Console.WriteLine(elem);
+            }
+
+            Console.ReadLine();
+
             /*Normal.N = 4;
             Normal.GenNorm(1, 2);
 
@@ -28,93 +46,97 @@ namespace LogNormal
             /*Console.WriteLine(Normal.GenNorm(67709809, 2)[0]);
             Console.WriteLine(LogNormal.GeneralNormal(3, 0.11, Normal.GenNorm(67709809, 2))[1]);*/
 
-            CultureInfo ci = new CultureInfo("en-US");
-            List<string> listMaterial = new List<string>();
+            #region Calc
 
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Please, enter path to cell folder ");
-            Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Gray;
-            string pathFCell = Console.ReadLine();
-            Console.ResetColor();
+            //CultureInfo ci = new CultureInfo("en-US");
+            //List<string> listMaterial = new List<string>();
 
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Please, enter quantity of material: ");
-            Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Gray;
-            string quanMaterial = Console.ReadLine();
-            Console.ResetColor();
+            //Console.ForegroundColor = ConsoleColor.Green;
+            //Console.WriteLine("Please, enter path to cell folder ");
+            //Console.ResetColor();
+            //Console.ForegroundColor = ConsoleColor.Gray;
+            //string pathFCell = Console.ReadLine();
+            //Console.ResetColor();
 
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Please, enter sigma: ");
-            Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Gray;
-            string sigma = Console.ReadLine();
-            Console.ResetColor();
+            //Console.ForegroundColor = ConsoleColor.Green;
+            //Console.WriteLine("Please, enter quantity of material: ");
+            //Console.ResetColor();
+            //Console.ForegroundColor = ConsoleColor.Gray;
+            //string quanMaterial = Console.ReadLine();
+            //Console.ResetColor();
 
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Enter number of material: ");
-            Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Gray;
-            int j = 0;
-            while (j != Convert.ToInt32(quanMaterial))
-            {
-                listMaterial.Add(Console.ReadLine());
-                j++;
-            }
-            Console.ResetColor();
+            //Console.ForegroundColor = ConsoleColor.Green;
+            //Console.WriteLine("Please, enter sigma: ");
+            //Console.ResetColor();
+            //Console.ForegroundColor = ConsoleColor.Gray;
+            //string sigma = Console.ReadLine();
+            //Console.ResetColor();
 
-            //// Get items contained .dat
-            var dir = new DirectoryInfo(pathFCell);
-            var allFileList = dir.GetFiles().Select(file => file.FullName).ToList();
+            //Console.ForegroundColor = ConsoleColor.Green;
+            //Console.WriteLine("Enter number of material: ");
+            //Console.ResetColor();
+            //Console.ForegroundColor = ConsoleColor.Gray;
+            //int j = 0;
+            //while (j != Convert.ToInt32(quanMaterial))
+            //{
+            //    listMaterial.Add(Console.ReadLine());
+            //    j++;
+            //}
+            //Console.ResetColor();
 
-            var cellFList = allFileList.Where(cell => cell.Contains(".dat")).ToList();
+            ////// Get items contained .dat
+            //var dir = new DirectoryInfo(pathFCell);
+            //var allFileList = dir.GetFiles().Select(file => file.FullName).ToList();
 
-            int numberRandom = (from pathCell in cellFList from str in File.ReadAllLines(pathCell, Encoding.Default) from material in listMaterial where str.Contains(" multiplier bin:") && str.Contains(material) select str).Count();
+            //var cellFList = allFileList.Where(cell => cell.Contains(".dat")).ToList();
 
-            var normal = new Normal();
+            //int numberRandom = (from pathCell in cellFList from str in File.ReadAllLines(pathCell, Encoding.Default) from material in listMaterial where str.Contains(" multiplier bin:") && str.Contains(material) select str).Count();
 
-            //// Generate Normal Massive
-            var normalMassive = normal.GenNorm(67709809, numberRandom);
+            //var normal = new Normal();
 
-            /*string outputPath = pathCell + "_new";
-            string[] readText = File.ReadAllLines(pathCell, Encoding.Default);
+            ////// Generate Normal Massive
+            //var normalMassive = normal.GenNorm(67709809, numberRandom);
 
-            //// Reed amount of Massive for generate Random Massive
-            int numberRandom = listMaterial.Sum(material => readText.Count(str => str.Contains(" multiplier bin:") && str.Contains(material)));
+            ///*string outputPath = pathCell + "_new";
+            //string[] readText = File.ReadAllLines(pathCell, Encoding.Default);
 
-            //// Generate Normal Massive
-            var normalMassive = Normal.GenNorm(67709809, numberRandom);*/
+            ////// Reed amount of Massive for generate Random Massive
+            //int numberRandom = listMaterial.Sum(material => readText.Count(str => str.Contains(" multiplier bin:") && str.Contains(material)));
 
-            int k = 0;
-            foreach (var pathCell in cellFList)
-            {
-                string outputPath = pathCell;
-                outputPath = outputPath.Remove(outputPath.Length - 4);
-                string[] readText = File.ReadAllLines(pathCell, Encoding.Default);
+            ////// Generate Normal Massive
+            //var normalMassive = Normal.GenNorm(67709809, numberRandom);*/
 
-                foreach (var material in listMaterial)
-                {
-                    int i = 0;
-                    foreach (var str in readText)
-                    {
-                        if (str.Contains(" multiplier bin:") && str.Contains(material))
-                        {
-                            //// Console.WriteLine((str.Remove(0, 19)).Remove(11));
-                            double value = Convert.ToDouble((readText[i + 1].Trim()).Remove(11), ci);
-                            //// Console.WriteLine((readText[i+1].Trim()).Remove(11));
-                            value = Math.Exp(value + Convert.ToDouble(sigma, ci)*normalMassive[k]);
-                            //// Console.WriteLine((readText[i + 1].Trim()).Remove(0, 11));
-                            readText[i + 1] = "\t\t\t\t " + value.ToString("#.00000E+00", ci) + " " +
-                                              (readText[i + 1].Trim()).Remove(0, 11);
-                            ////   Console.WriteLine(readText[i]);
-                            k++;
-                        }
-                        i++;
-                    }
-                }
-                File.WriteAllLines(outputPath + "_lnorm.dat", readText, Encoding.UTF8);
-            }
+            //int k = 0;
+            //foreach (var pathCell in cellFList)
+            //{
+            //    string outputPath = pathCell;
+            //    outputPath = outputPath.Remove(outputPath.Length - 4);
+            //    string[] readText = File.ReadAllLines(pathCell, Encoding.Default);
+
+            //    foreach (var material in listMaterial)
+            //    {
+            //        int i = 0;
+            //        foreach (var str in readText)
+            //        {
+            //            if (str.Contains(" multiplier bin:") && str.Contains(material))
+            //            {
+            //                //// Console.WriteLine((str.Remove(0, 19)).Remove(11));
+            //                double value = Convert.ToDouble((readText[i + 1].Trim()).Remove(11), ci);
+            //                //// Console.WriteLine((readText[i+1].Trim()).Remove(11));
+            //                value = Math.Exp(value + Convert.ToDouble(sigma, ci)*normalMassive[k]);
+            //                //// Console.WriteLine((readText[i + 1].Trim()).Remove(0, 11));
+            //                readText[i + 1] = "\t\t\t\t " + value.ToString("#.00000E+00", ci) + " " +
+            //                                  (readText[i + 1].Trim()).Remove(0, 11);
+            //                ////   Console.WriteLine(readText[i]);
+            //                k++;
+            //            }
+            //            i++;
+            //        }
+            //    }
+            //    File.WriteAllLines(outputPath + "_lnorm.dat", readText, Encoding.UTF8);
+            //}
+
+            #endregion Calc
         }
     }
 }

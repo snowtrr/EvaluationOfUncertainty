@@ -15,20 +15,18 @@ namespace LogNormal
         /// <returns></returns>
         public double Integral()
         {
-            var random = new Random {Iseed = 2147483646};
+            var random = new Random(2147483646);
 
-            Console.WriteLine(random.Iseed);
-            int underGraph = 0;
+            var underGraph = 0;
 
-            for (int i = 0; i < 100000; i++)
+            for (var i = 0; i < 1000000; i++)
             {
-                double randNumberX = random.GenRandNumb(random.Iseed);
-                double randNumberY = random.GenRandNumb(random.Iseed);
+                var randNumberX = random.GenRandNumb();
+                var randNumberY = random.GenRandNumb();
 
-                //// Console.WriteLine(Random.GenRandNumb(Random.Iseed));
                 underGraph = Y(randNumberX) > randNumberY ? underGraph + 1 : underGraph;
             }
-            return Convert.ToDouble((double)underGraph/100000);
+            return Convert.ToDouble((double)underGraph/1000000);
         }
 
         /// <summary>
@@ -36,7 +34,7 @@ namespace LogNormal
         /// </summary>
         /// <param name="x">X</param>
         /// <returns>X*X</returns>
-        public double Y(double x)
+        private double Y(double x)
         {
             return x*x;
         }

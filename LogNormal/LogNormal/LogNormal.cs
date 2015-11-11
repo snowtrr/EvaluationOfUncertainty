@@ -18,6 +18,7 @@ namespace LogNormal
         /// <returns>Massive of log normal random numbers</returns>
         public double[] GeneralNormal(double mu, double sigma, double[] massive)
         {
+
             var n = massive.Length;
             var logNormal = new double[n];
 
