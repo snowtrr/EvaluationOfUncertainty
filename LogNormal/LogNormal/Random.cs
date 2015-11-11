@@ -44,6 +44,7 @@ namespace LogNormal
             z1 = d1 % apperValue;
             var retVal = (float)(z1 * lowerValue);
             Iseed = Convert.ToInt32(z1);
+
             return retVal;
         }
 

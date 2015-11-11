@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace LogNormal
 {
@@ -10,23 +11,26 @@ namespace LogNormal
         #region Public methods
 
         /// <summary>
-        /// Generate massive of log normal distribution
+        /// Generate massiveOfNormal of log normal distribution
         /// </summary>
         /// <param name="mu">Mu</param>
         /// <param name="sigma">Sigma</param>
-        /// <param name="massive">Massive</param>
+        /// <param name="numberOfElem">Number of elements to generate</param>
         /// <returns>Massive of log normal random numbers</returns>
-        public double[] GeneralNormal(double mu, double sigma, double[] massive)
+        public List<double> GenLogNormal(double mu, double sigma, int numberOfElem)
         {
+            var normal = new Normal();
+            var logNormalMassive = normal.GenNormal(numberOfElem);
 
-            var n = massive.Length;
-            var logNormal = new double[n];
+            var n = numberOfElem;
+            var massLogNormaList = new List<double>();
 
             for (var i = 0; i < n; i++)
             {
-                logNormal[i] = Math.Exp(mu + sigma * massive[i]);
+                massLogNormaList.Add(Math.Exp(mu + sigma * logNormalMassive[i]));
             }
-            return logNormal;
+
+            return massLogNormaList;
         }
 
         #endregion Public methods

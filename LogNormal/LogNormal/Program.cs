@@ -20,14 +20,17 @@ namespace LogNormal
             #endregion Checker
 
             var normal = new Normal();
-            var m = normal.GenNorm(2147483646, 101);
+            var m = normal.GenNormal(1000);
 
-            foreach (var elem in m)
+            string[] mas = new string[m.Count];
+            var i = 0;
+            foreach (var el in m)
             {
-                Console.WriteLine(elem);
+                mas[i] = el.ToString();
+                i++;
             }
 
-            Console.ReadLine();
+            File.WriteAllLines(@"D:\a", mas);
 
             /*Normal.N = 4;
             Normal.GenNorm(1, 2);

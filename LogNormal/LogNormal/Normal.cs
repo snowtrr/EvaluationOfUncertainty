@@ -13,10 +13,10 @@ namespace LogNormal
         /// <summary>
         /// Generate massive of normal distribution
         /// </summary>
-        /// <param name="iseed">Iseed number</param>
         /// <param name="n">N</param>
+        /// <param name="iseed">Iseed number</param>
         /// <returns>Massive of normal random numbers</returns>
-        public List<double> GenNorm(int iseed, int n)
+        public List<double> GenNormal(int n, int iseed = 2147483646)
         {
             // Save primal number to create output list
             var curN = n;
@@ -64,7 +64,7 @@ namespace LogNormal
                 massive[i + 1] = v * sln;
             }
 
-            List<double> massNormaList = new List<double>();
+            var massNormaList = new List<double>();
             for (var j = 0; j < curN; j++)
             {
                 massNormaList.Add(massive[j]);

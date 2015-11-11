@@ -29,6 +29,10 @@ namespace LogNormal
             return Convert.ToDouble((double)underGraph/1000000);
         }
 
+        #endregion Public method
+
+        #region Private method
+
         /// <summary>
         /// Function Y(X) = X*X for check
         /// </summary>
@@ -38,7 +42,7 @@ namespace LogNormal
         {
             return x*x;
         }
-    }
 
-    #endregion Public method
+        #endregion Private method
+    }
 }
