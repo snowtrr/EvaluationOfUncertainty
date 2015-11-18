@@ -13,24 +13,15 @@ namespace LogNormal
         /// <summary>
         /// Generate massiveOfNormal of log normal distribution
         /// </summary>
-        /// <param name="mu">Mu</param>
+        /// <param name="mu">Mu (Считанное значение для добавления погрешности)</param>
         /// <param name="sigma">Sigma</param>
-        /// <param name="numberOfElem">Number of elements to generate</param>
+        /// <param name="normalNumber">Normal number (Случайная величин распределенная по нормальному закону)</param>
         /// <returns>Massive of log normal random numbers</returns>
-        public List<double> GenLogNormal(double mu, double sigma, int numberOfElem)
+        public double GenLogNormalNumber(double mu, double sigma, double normalNumber)
         {
-            var normal = new Normal();
-            var logNormalMassive = normal.GenNormal(numberOfElem);
+            var genLogNormal = Math.Exp(mu + sigma * normalNumber);
 
-            var n = numberOfElem;
-            var massLogNormaList = new List<double>();
-
-            for (var i = 0; i < n; i++)
-            {
-                massLogNormaList.Add(Math.Exp(mu + sigma * logNormalMassive[i]));
-            }
-
-            return massLogNormaList;
+            return genLogNormal;
         }
 
         #endregion Public methods
