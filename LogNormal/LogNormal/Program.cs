@@ -135,7 +135,7 @@ namespace LogNormal
                             i++;
                         }
                     }
-                    File.WriteAllLines(outputPath, readText, Encoding.UTF8);
+                    File.WriteAllLines(outputPath + ".dat", readText);
                 }
             }
 
