@@ -1,19 +1,19 @@
-﻿using System;
-using System.Runtime.Remoting.Proxies;
-
-namespace LogNormal
+﻿namespace LogNormal
 {
+    using System;
+    using System.Threading;
+
     /// <summary>
     /// Class for generate random massive
     /// </summary>
-    class Random
+    internal class CustomRandom
     {
         #region Constructors
 
         /// <summary>
         /// Constructor of class
         /// </summary>
-        public Random(int iseed)
+        public CustomRandom(int iseed)
         {
             Iseed = iseed;
         }
@@ -31,7 +31,7 @@ namespace LogNormal
 
         #region Public methods
 
-        public float GenRandNumb()
+        public float GenRandNumbCustom()
         {
             // Initialized data
             const double lowerValue = 4.656612873077392578125e-10;
@@ -49,5 +49,19 @@ namespace LogNormal
         }
 
         #endregion Public methods
+    }
+
+    public static class RandomProvider
+    {
+        private static int _seed = Environment.TickCount;
+
+        private static readonly ThreadLocal<Random> RandomWrapper = new ThreadLocal<Random>(() =>
+            new Random(Interlocked.Increment(ref _seed))
+        );
+
+        public static Random GetThreadRandom()
+        {
+            return RandomWrapper.Value;
+        }
     }
 }

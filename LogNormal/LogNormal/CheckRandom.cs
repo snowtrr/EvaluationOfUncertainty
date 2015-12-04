@@ -1,11 +1,11 @@
-﻿using System;
-
-namespace LogNormal
+﻿namespace LogNormal
 {
+    using System;
+
     /// <summary>
     /// Class for check generated data by calculation integral
     /// </summary>
-    class CheckRandom
+    internal class CheckRandom
     {
         #region Public method
 
@@ -15,18 +15,38 @@ namespace LogNormal
         /// <returns></returns>
         public double Integral()
         {
-            var random = new Random(2147483646);
+            var random = new CustomRandom(Environment.TickCount);
 
             var underGraph = 0;
+            const int accuracy = 10000;
 
-            for (var i = 0; i < 1000000; i++)
+            for (var i = 0; i < accuracy; i++)
             {
-                var randNumberX = random.GenRandNumb();
-                var randNumberY = random.GenRandNumb();
+                var randNumberX = random.GenRandNumbCustom();
+                var randNumberY = random.GenRandNumbCustom();
 
                 underGraph = Y(randNumberX) > randNumberY ? underGraph + 1 : underGraph;
             }
-            return Convert.ToDouble((double)underGraph/1000000);
+            return Convert.ToDouble((double)underGraph/accuracy);
+        }
+
+        /// <summary>
+        /// Approximate calculation of the integral
+        /// </summary>
+        /// <returns></returns>
+        public double IntegralDotNet()
+        {
+            var underGraph = 0;
+            const int accuracy = 10000000;
+
+            for (var i = 0; i < accuracy; i++)
+            {
+                var randNumberX = RandomProvider.GetThreadRandom().NextDouble();
+                var randNumberY = RandomProvider.GetThreadRandom().NextDouble();
+
+                underGraph = Y(randNumberX) > randNumberY ? underGraph + 1 : underGraph;
+            }
+            return Convert.ToDouble((double)underGraph / accuracy);
         }
 
         #endregion Public method

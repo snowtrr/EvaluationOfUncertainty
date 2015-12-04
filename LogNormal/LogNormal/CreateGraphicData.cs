@@ -1,11 +1,12 @@
-﻿namespace GetResults
+﻿namespace LogNormal
 {
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
 
     public class CreateGraphicData
     {
-        public List<string> Create(double[] numbers, int numberIntervals)
+        public void Create(double[] numbers, int numberIntervals)
         {
             var max = numbers.Max();
             var min = numbers.Min();
@@ -28,7 +29,7 @@
                 upBorder += interval;
             }
 
-            return result;
+            File.WriteAllLines(@"E:\1.txt", result.ToArray());
         }
     }
 }

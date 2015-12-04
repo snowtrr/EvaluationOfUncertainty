@@ -1,20 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VBO_runner
+﻿namespace VBO_runner
 {
-    class Program
+    using System;
+
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var genInp = new GenerateInput();
-            var runVBOApp = new RunVBOApp();
+            var runVboApp = new RunVboApp();
 
-            if(genInp.Generate(Console.ReadLine(), Console.ReadLine()))
-            runVBOApp.Generate(4, genInp, Console.ReadLine());
+            Console.WriteLine("Enter full path to standart input file:");
+            var fullPathInput = Console.ReadLine();
+
+            Console.WriteLine("Enter full path to folder wich contains generated folders with dat files:");
+            var fullPathDataFolder = Console.ReadLine();
+
+            Console.WriteLine("Enter number of parallel start process:");
+            var processNumber = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("VBO path:");
+            var vbo = Console.ReadLine();
+
+            if (genInp.Generate(fullPathInput, fullPathDataFolder))
+            runVboApp.Generate(processNumber, genInp, vbo);
         }
     }
 }

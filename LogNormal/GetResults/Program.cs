@@ -1,20 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GetResults
+﻿namespace GetResults
 {
-    class Program
+    using System;
+    using System.IO;
+
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var reader = new ReadResults();
             var createGraph = new CreateGraphicData();
-            createGraph.Create(reader.Read(Console.ReadLine()), 15);
-            
-            Console.ReadLine();
+
+            Console.WriteLine("Path to folder wich contains folders with burned materials:");
+            var inputPathToGenFolder = Console.ReadLine();
+
+            Console.WriteLine("Number of points on graphic:");
+            var numberOfPointInGraph = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Material's number:");
+            var material = Console.ReadLine();
+
+            Console.WriteLine("Result path:");
+            var outputResult = Console.ReadLine();
+
+            var content = createGraph.Create(reader.Read(inputPathToGenFolder, material), numberOfPointInGraph).ToArray();
+            var logNormalGraph = Path.Combine(outputResult, "forCreateGraph.txt");
+
+            File.WriteAllLines(logNormalGraph, content);
         }
     }
 }

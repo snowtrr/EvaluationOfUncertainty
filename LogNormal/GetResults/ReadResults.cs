@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-
-namespace GetResults
+﻿namespace GetResults
 {
+    using System.Collections.Generic;
+    using System.IO;
+
     public class ReadResults
     {
-        public double[] Read(string path)
+        public double[] Read(string path, string material)
         {
             // All folders mass
             var allFolders = Directory.GetDirectories(path);
@@ -37,7 +35,7 @@ namespace GetResults
                             }
                             if (flagStartRead)
                             {
-                                if (line.Contains("92235.90c"))
+                                if (line.Contains(material))
                                 {
                                     var newLine = (line.Remove(0, 16)).Trim();
                                     listOfBurned.Add(double.Parse(newLine, System.Globalization.CultureInfo.InvariantCulture));

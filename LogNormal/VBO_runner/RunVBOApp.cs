@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Threading;
-
-namespace VBO_runner
+﻿namespace VBO_runner
 {
-    public class RunVBOApp
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Threading;
+
+    public class RunVboApp
     {
         public void Generate(int countProcess, GenerateInput input, string appPath, int tryCount = 60, int waitMiliSeconds = 2000)
         {
             var oldCountProcess = countProcess;
-            var getMcnpLnPath = input.autoResParentPath;
-            var inputFiles = Directory.GetFiles(input.inputParentPath);
+            var getMcnpLnPath = input.AutoResParentPath;
+            var inputFiles = Directory.GetFiles(input.InputParentPath);
             var vboApp = new FileInfo(appPath);
 
             Directory.CreateDirectory(getMcnpLnPath);
@@ -51,39 +49,6 @@ namespace VBO_runner
                     countProcess += oldCountProcess;
                 }
             }
-
-            //foreach (var inputFile in inputFiles)
-            //{
-            //    processInfo.Arguments = "\"" + inputFile + "\"";
-            //    listOfProcess.Add(Process.Start(processInfo));
-            //    Thread.Sleep(600);
-            //}
-
-            //bool flagStop;
-            //foreach (var process in listOfProcess)
-            //{
-            //    flagStop = false;
-            //    for (int i = 0; i < tryCount; i++)
-            //    {
-            //        Directory.CreateDirectory(getMcnpLnPath);
-            //        foreach (var dir in Directory.GetDirectories(getMcnpLnPath))
-            //        {
-            //            if (File.Exists(Path.Combine(dir, "mcnpIn")))
-            //            {
-            //                Thread.Sleep(500);
-            //                process.Kill();
-            //                flagStop = true;
-            //                break;
-            //            }
-            //        }
-                    
-            //        if (flagStop)
-            //            break;
-
-            //        Thread.Sleep(new TimeSpan(0, 0, waitSeconds));
-            //    }
-            //}
-
         }
     }
 }
