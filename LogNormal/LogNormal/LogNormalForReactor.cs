@@ -15,7 +15,6 @@
             string quanMaterial,
             string sigma,
             List<string> listMaterial,
-            int multiplyKoeff,
             bool useCustomGenerator = true)
         {
             var ci = new CultureInfo("en-US");
@@ -63,8 +62,8 @@
                             {
                                 var value = Convert.ToDouble((readText[i + 1].Trim()).Remove(11), ci);
                                 value = logNormal.GenLogNormalNumber(value, Convert.ToDouble(sigma, ci),
-                                    normalMassive[k], multiplyKoeff);
-                                readText[i + 1] = "\t\t\t\t " + value.ToString("#.00000E+00", ci) + " " +
+                                    normalMassive[k]);
+                                readText[i + 1] = "\t\t\t\t " + value.ToString("#.00000E+00", ci) +
                                                   (readText[i + 1].Trim()).Remove(0, 11);
                                 k++;
                             }

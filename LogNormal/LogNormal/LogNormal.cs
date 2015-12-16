@@ -15,11 +15,10 @@
         /// <param name="mu">Mu (Считанное значение для добавления погрешности)</param>
         /// <param name="sigma">Sigma</param>
         /// <param name="normalNumber">Normal number (Случайная величин распределенная по нормальному закону)</param>
-        /// <param name="multiplyKoeff">Маштаб</param>
         /// <returns>Massive of log normal random numbers</returns>
-        public double GenLogNormalNumber(double mu, double sigma, double normalNumber, int multiplyKoeff)
+        public double GenLogNormalNumber(double mu, double sigma, double normalNumber)
         {
-            var genLogNormal = Math.Exp((mu + sigma * normalNumber)/multiplyKoeff);
+            var genLogNormal = mu * Math.Exp(0 + sigma/100 * normalNumber);
 
             return genLogNormal;
         }

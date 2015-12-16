@@ -23,7 +23,7 @@
                 var j = numbers.Count(number => number <= upBorder && number >= downBorder);
 
                 // Console.WriteLine($"от {DownBorder} до {UpBorder} - {j}");
-                result.Add(j.ToString());
+                result.Add($"{(upBorder + downBorder)/2} {j.ToString()}");
                 downBorder += interval;
                 upBorder += interval;
             }

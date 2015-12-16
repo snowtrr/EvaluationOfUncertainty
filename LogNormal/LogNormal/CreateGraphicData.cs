@@ -24,7 +24,7 @@
                 var j = numbers.Count(number => number <= upBorder && number >= downBorder);
 
                 // Console.WriteLine($"от {DownBorder} до {UpBorder} - {j}");
-                result.Add(j.ToString());
+                result.Add($"{j.ToString()}");
                 downBorder += interval;
                 upBorder += interval;
             }

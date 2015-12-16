@@ -1,4 +1,7 @@
-﻿namespace LogNormal
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace LogNormal
 {
     using System;
 
@@ -13,21 +16,29 @@
 
         public bool Graph(bool genCustom = true)
         {
+            var logN = new LogNormal();
             var normal = new Normal();
-            var m = genCustom ? normal.GenCustomNormal(10000, Environment.TickCount) : normal.GenNormal(10000);
+            var m = genCustom ? normal.GenCustomNormal(30000, Environment.TickCount) : normal.GenNormal(10000);
 
             var mas = new double[m.Count];
             var i = 0;
+            var list = new List<double>();
 
             foreach (var el in m)
             {
-                mas[i] = el;
+                list.Add(logN.GenLogNormalNumber(100000, 10, el));
+                mas[i] = logN.GenLogNormalNumber(100000, 10, el);
                 i++;
             }
 
             var res = new CreateGraphicData();
 
             res.Create(mas, 80);
+            
+            var gg = new GetMuSigma(list.ToArray());
+            Console.WriteLine(gg.ResultMu + "\n" + gg.ResultSigma);
+            Console.WriteLine(list.Min());
+            Console.ReadLine();
 
             return true;
         }

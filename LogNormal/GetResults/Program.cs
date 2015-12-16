@@ -22,10 +22,16 @@
             Console.WriteLine("Result path:");
             var outputResult = Console.ReadLine();
 
-            var content = createGraph.Create(reader.Read(inputPathToGenFolder, material), numberOfPointInGraph).ToArray();
+            var allNum = reader.Read(inputPathToGenFolder, material);
+
+            var content = createGraph.Create(allNum, numberOfPointInGraph).ToArray();
             var logNormalGraph = Path.Combine(outputResult, "forCreateGraph.txt");
 
             File.WriteAllLines(logNormalGraph, content);
+
+            var gestMuSigma = new ResultMuSigma(allNum);
+            Console.WriteLine($"Mu = {gestMuSigma.ResultMu}\nSigma = {gestMuSigma.ResultSigma}");
+            Console.ReadLine();
         }
     }
 }

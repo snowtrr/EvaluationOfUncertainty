@@ -32,7 +32,7 @@
             Console.ResetColor();
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Please, enter sigma: ");
+            Console.WriteLine("Please, enter sigma in percent: ");
             Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.Gray;
             var sigma = Console.ReadLine();
@@ -51,7 +51,7 @@
             }
             Console.ResetColor();
 
-            lnfReactor.GenFiles(numberOfFolder, pathFCell, quanMaterial, sigma, listMaterial, 10);
+            lnfReactor.GenFiles(numberOfFolder, pathFCell, quanMaterial, sigma, listMaterial);
         }
     }
 }

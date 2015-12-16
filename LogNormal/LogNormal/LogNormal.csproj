@@ -64,6 +64,7 @@
     <Compile Include="CheckAndGraph.cs" />
     <Compile Include="CheckRandom.cs" />
     <Compile Include="CreateGraphicData.cs" />
+    <Compile Include="GetMuSigma.cs" />
     <Compile Include="LogNormal.cs" />
     <Compile Include="LogNormalForReactor.cs" />
     <Compile Include="Normal.cs" />
