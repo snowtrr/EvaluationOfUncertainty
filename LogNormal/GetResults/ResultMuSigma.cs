@@ -23,6 +23,7 @@
             }
 
             _resultSigma = Math.Sqrt(_resultSigma / numbers.Length);
+            _resultSigma = (_resultSigma/_resultMu)*100;
 
             ResultMu = _resultMu;
             ResultSigma = _resultSigma;
