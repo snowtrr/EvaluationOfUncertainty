@@ -18,7 +18,7 @@ namespace LogNormal
         {
             var logN = new LogNormal();
             var normal = new Normal();
-            var m = genCustom ? normal.GenCustomNormal(30000, Environment.TickCount) : normal.GenNormal(10000);
+            var m = genCustom ? normal.GenCustomNormal(1000000, Environment.TickCount) : normal.GenNormal(10000);
 
             var mas = new double[m.Count];
             var i = 0;
@@ -26,8 +26,8 @@ namespace LogNormal
 
             foreach (var el in m)
             {
-                list.Add(logN.GenLogNormalNumber(100000, 10, el));
-                mas[i] = logN.GenLogNormalNumber(100000, 10, el);
+                list.Add(el);
+                mas[i] = logN.GenLogNormalNumber(1, 10, el);
                 i++;
             }
 

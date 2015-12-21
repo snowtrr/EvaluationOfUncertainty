@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LogNormal
+﻿namespace LogNormal
 {
+    using System;
+
     class GetMuSigma
     {
-
         private double _resultMu;
         private double _resultSigma;
 
@@ -19,15 +14,16 @@ namespace LogNormal
             {
                 _resultMu += num;
             }
-            _resultMu = _resultMu/numbers.Length;
+            _resultMu = _resultMu / numbers.Length;
 
             // Получаем среднеквадратичное отклонение
             foreach (var num in numbers)
             {
-                _resultSigma += (num - _resultMu)*(num - _resultMu);
+                _resultSigma += (num - _resultMu) * (num - _resultMu);
             }
 
             _resultSigma = Math.Sqrt(_resultSigma / numbers.Length);
+            _resultSigma = (_resultSigma / _resultMu) * 100;
 
             ResultMu = _resultMu;
             ResultSigma = _resultSigma;

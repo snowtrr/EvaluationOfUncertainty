@@ -18,7 +18,7 @@
             var random = new CustomRandom(Environment.TickCount);
 
             var underGraph = 0;
-            const int accuracy = 10000;
+            const int accuracy = 1000000;
 
             for (var i = 0; i < accuracy; i++)
             {
@@ -60,7 +60,7 @@
         /// <returns>X*X</returns>
         private double Y(double x)
         {
-            return x*x;
+            return x*x*x;
         }
 
         #endregion Private method
